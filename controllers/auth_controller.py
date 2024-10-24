@@ -1,8 +1,16 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Form
 from models.user import User
 from services.auth_service import AuthService
 
 router = APIRouter()
+
+
+@router.post("/login")
+async def login(username: str = Form(...), password: str = Form(...)):
+    if not AuthService.login(username, password):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    return {"message": "Logged in successfully"}
+
 
 @router.post("/signup")
 async def signup(user: User):
@@ -10,12 +18,6 @@ async def signup(user: User):
     if not created_user:
         raise HTTPException(status_code=400, detail="Username already taken")
     return {"message": "User created successfully"}
-
-@router.post("/login")
-async def login(user: User):
-    if not AuthService.login(user.username, user.password):
-        raise HTTPException(status_code=401, detail="Invalid credentials")
-    return {"message": "Logged in successfully"}
 
 @router.post("/logout")
 async def logout():
