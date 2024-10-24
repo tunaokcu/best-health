@@ -1,9 +1,17 @@
-from fastapi import APIRouter, HTTPException, Form
+from fastapi import APIRouter, HTTPException, Form, Request
+from fastapi.templating import Jinja2Templates
 from models.user import User
 from services.auth_service import AuthService
 
 router = APIRouter()
 
+# Set up Jinja2 template rendering
+templates = Jinja2Templates(directory="templates")
+
+# Render the login page
+@router.get("/login")
+async def get_login_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
 
 @router.post("/login")
 async def login(username: str = Form(...), password: str = Form(...)):
@@ -25,3 +33,4 @@ async def logout():
     if not AuthService.logout():
         raise HTTPException(status_code=400, detail="Logout failed")
     return {"message": "Logged out successfully"}
+
