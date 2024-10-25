@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Form, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
-from services.auth_service import AuthService
+from services.user_service import UserService
 from starlette.responses import HTMLResponse
 
 router = APIRouter()
@@ -17,7 +17,7 @@ async def get_login_page(request: Request, error: str = None, message: str = Non
 # Handle form submissions to login
 @router.post("/login")
 async def login(username: str = Form(...), password: str = Form(...)):
-    if not AuthService.login(username, password):
+    if not UserService.login(username, password):
         # Redirect to the login page with an error message
         return RedirectResponse(url="/auth/login?error=Invalid credentials", status_code=303)
     
@@ -36,7 +36,7 @@ async def logout():
 
 @router.post("/signup")
 async def signup(username: str = Form(...), password: str = Form(...)):
-    created_user = AuthService.signup(username, password)
+    created_user = UserService.signup(username, password)
     if not created_user:
         # Redirect to the login page with an error message
         return RedirectResponse(url="/auth/login?error=Username already taken", status_code=303)
