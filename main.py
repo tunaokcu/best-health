@@ -5,10 +5,4 @@ from fastapi import Request
 from controllers import auth_controller
 
 app = FastAPI()
-
-# Serve static files (e.g., CSS/JS)
-# app.mount("/static", StaticFiles(directory="static"), name="static")
-
-# Include the router from the auth controller
 app.include_router(auth_controller.router, prefix="/auth")
-

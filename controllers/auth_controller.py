@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Form, Request
+from fastapi import APIRouter, Form, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from services.auth_service import AuthService
@@ -14,6 +14,7 @@ templates = Jinja2Templates(directory="templates")
 async def get_login_page(request: Request, error: str = None, message: str = None):
     return templates.TemplateResponse("login.html", {"request": request, "error": error, "message": message})
 
+# Handle form submissions to login
 @router.post("/login")
 async def login(username: str = Form(...), password: str = Form(...)):
     if not AuthService.login(username, password):
@@ -28,7 +29,7 @@ async def login(username: str = Form(...), password: str = Form(...)):
 async def dummy_page(request: Request):
     return templates.TemplateResponse("dummy.html", {"request": request})
 
-# Logout function (optional)
+# Redirect from dashboard(dummy) to login
 @router.get("/logout")
 async def logout():
     return RedirectResponse(url="/auth/login", status_code=303)
@@ -42,13 +43,3 @@ async def signup(username: str = Form(...), password: str = Form(...)):
     
     # Redirect to the login page with a success message
     return RedirectResponse(url="/auth/login?message=Registered successfully", status_code=303)
-
-"""
-@router.post("/logout")
-async def logout():
-    # In a real scenario, this would handle session/token invalidation
-    if not AuthService.logout():
-        raise HTTPException(status_code=400, detail="Logout failed")
-    return {"message": "Logged out successfully"}
-
-"""

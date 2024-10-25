@@ -1,6 +1,5 @@
 from repositories.user_repository import UserRepository
 from passlib.context import CryptContext
-from typing import Optional
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
