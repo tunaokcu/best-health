@@ -198,28 +198,29 @@
           <div class="content"> 
            <h2>Sign In</h2> 
       
+           <form action="/auth/login" method="post">
            <div class="form" >
-            <form action="/auth/login" method="post">
-
-              <div class="inputBox"> 
-              <input type="text" id="username" name="username" required> <i>Username</i> 
-              </div> 
-              <div class="inputBox"> 
-              <input type="password" id="password" name="password" required> <i>Password</i> 
-              </div> 
-        
-              {% if error %}
-              <p style="color: red;">{{ error }}</p>
-              {% endif %}
+                <div class="inputBox"> 
+                <input type="text" id="username" name="username" required> <i>Username</i> 
+                </div> 
+                <div class="inputBox"> 
+                <input type="password" id="password" name="password" required> <i>Password</i> 
+                </div> 
           
-              {% if message %}
-              <p style="color: green;">{{ message }}</p>
-              {% endif %}
-              <div class="inputBox"> 
-              <input type="submit" value="Login"> 
-              </div> 
-            </form>
+                {% if error %}
+                <p style="color: red;">{{ error }}</p>
+                {% endif %}
+            
+                {% if message %}
+                <p style="color: green;">{{ message }}</p>
+                {% endif %}
+                <div class="inputBox"> 
+                <input type="submit" value="Login"> 
+                </div> 
+                <div class="links"><a href="/auth/register">Signup</a></div>
             </div> 
+          </form>
+
 
           </div> 
          </div> 

@@ -198,8 +198,8 @@
           <div class="content"> 
            <h2>Sign In</h2> 
       
+           <form action="/auth/register" method="post">
            <div class="form" >
-            <form action="/auth/register" method="post">
 
               <div class="inputBox"> 
               <input type="text" id="firstname" name="firstname" required> <i>First name</i> 
@@ -228,12 +228,13 @@
               <div class="inputBox"> 
               <input type="submit" value="register"> 
               </div> 
-            </form>
+              <div class="links"><a href="/auth/login">Login</a></div>
             </div> 
 
-          </div> 
-         </div> 
-      
+            </div> 
+            </div> 
+          </form>
+
         </section> <!-- partial --> 
       
        </body>

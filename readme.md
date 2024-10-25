@@ -15,3 +15,6 @@ venv\Scripts\activate
 uvicorn main:app --reload
 
 deactivate
+
+
+Credits for the CSS theme goes to https://codepen.io/ayush602/pen/mdQJreW 
