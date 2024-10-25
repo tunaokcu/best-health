@@ -35,12 +35,16 @@ async def logout():
     return RedirectResponse(url="/auth/login", status_code=303)
 
 @router.post("/signup")
-async def signup(user: User):
-    created_user = AuthService.signup(user)
+async def signup(username: str = Form(...), password: str = Form(...)):
+    created_user = AuthService.signup(username, password)
     if not created_user:
-        raise HTTPException(status_code=400, detail="Username already taken")
-    return {"message": "User created successfully"}
+        # Redirect to the login page with an error message
+        return RedirectResponse(url="/auth/login?error=Username already taken", status_code=400)
+    
+    # Redirect to the login page with a success message
+    return RedirectResponse(url="/auth/login?message=Registered successfully", status_code=303)
 
+"""
 @router.post("/logout")
 async def logout():
     # In a real scenario, this would handle session/token invalidation
@@ -48,3 +52,4 @@ async def logout():
         raise HTTPException(status_code=400, detail="Logout failed")
     return {"message": "Logged out successfully"}
 
+"""

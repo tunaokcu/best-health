@@ -15,13 +15,13 @@ class AuthService:
         return pwd_context.verify(plain_password, hashed_password)
 
     @staticmethod
-    def signup(user: User) -> Optional[UserInDB]:
-        existing_user = UserRepository.find_by_username(user.username)
+    def signup(username, password):
+        existing_user = UserRepository.find_by_username(username)
         if existing_user:
             return None  # Username already exists
 
-        hashed_password = AuthService.hash_password(user.password)
-        user_in_db = UserInDB(username=user.username, hashed_password=hashed_password)
+        hashed_password = AuthService.hash_password(password)
+        user_in_db = UserInDB(username=username, password=password, hashed_password=hashed_password)
         return UserRepository.create_user(user_in_db)
 
     @staticmethod
