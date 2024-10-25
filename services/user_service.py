@@ -1,4 +1,4 @@
-from auth_service import AuthService
+from services.auth_service import AuthService
 from repositories.user_repository import UserRepository
 
 class UserService:
