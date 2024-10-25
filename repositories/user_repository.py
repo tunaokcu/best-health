@@ -1,15 +1,23 @@
-from models.user import UserInDB
-from models.user import User
-from passlib.context import CryptContext
 
+from passlib.context import CryptContext
+from pydantic import BaseModel
+from typing import Optional
+
+class User(BaseModel):
+    username: str
+    hashed_password: str
+
+#NOTE! hashing is not the responsibility of user_repository, therefore in an actual application the below line would not exist
+#it is included here only to add a dummy user to the mock database for testing purposes
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Mock database
-db = [UserInDB(username="username", password="password", hashed_password=pwd_context.hash("password"))]
+db = [User(username="username", hashed_password=pwd_context.hash("password"))]
 
 class UserRepository:
     @staticmethod
-    def create_user(user: UserInDB):
+    def create_user(username, hashed_password):
+        user = User(username=username, hashed_password=hashed_password)
         db.append(user)
         return user
 

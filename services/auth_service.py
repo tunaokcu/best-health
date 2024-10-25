@@ -1,5 +1,4 @@
 from repositories.user_repository import UserRepository
-from models.user import User, UserInDB
 from passlib.context import CryptContext
 from typing import Optional
 
@@ -15,21 +14,23 @@ class AuthService:
         return pwd_context.verify(plain_password, hashed_password)
 
     @staticmethod
-    def signup(username, password):
+    def signup(username: str, password: str):
         existing_user = UserRepository.find_by_username(username)
         if existing_user:
             return None  # Username already exists
 
         hashed_password = AuthService.hash_password(password)
-        user_in_db = UserInDB(username=username, password=password, hashed_password=hashed_password)
-        return UserRepository.create_user(user_in_db)
+        return UserRepository.create_user(username, hashed_password)
 
     @staticmethod
     def login(username: str, password: str) -> bool:
-        user_in_db = UserRepository.find_by_username(username)
-        if not user_in_db:
+        user = UserRepository.find_by_username(username)
+        # Username does not exist
+        if not user:
             return False
-        return AuthService.verify_password(password, user_in_db.hashed_password)
+        
+        # Return true if the hashed version of the password matches the one in the database
+        return AuthService.verify_password(password, user.hashed_password)
 
     @staticmethod
     def logout() -> bool:
