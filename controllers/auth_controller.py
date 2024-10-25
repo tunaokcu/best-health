@@ -9,6 +9,11 @@ router = APIRouter()
 # Set up Jinja2 template rendering
 templates = Jinja2Templates(directory="templates")
 
+# Render the register page
+@router.get("/register")
+async def get_register_page(request: Request, error: str = None, message: str = None):
+    return templates.TemplateResponse("register.html", {"request": request, "error": error, "message": message})
+
 # Render the login page
 @router.get("/login")
 async def get_login_page(request: Request, error: str = None, message: str = None):
@@ -34,12 +39,12 @@ async def get_dashboard_page(request: Request):
 async def logout():
     return RedirectResponse(url="/auth/login", status_code=303)
 
-@router.post("/signup")
-async def signup(username: str = Form(...), password: str = Form(...)):
-    created_user = UserService.signup(username, password)
+@router.post("/register")
+async def register(firstname: str = Form(...), lastname: str = Form(...), email: str = Form(...), password: str = Form(...)):
+    created_user = UserService.signup(firstname, lastname, email, password)
     if not created_user:
         # Redirect to the login page with an error message
-        return RedirectResponse(url="/auth/login?error=Username already taken", status_code=303)
+        return RedirectResponse(url="/auth/register?error=Username already taken", status_code=303)
     
     # Redirect to the login page with a success message
     return RedirectResponse(url="/auth/login?message=Registered successfully", status_code=303)

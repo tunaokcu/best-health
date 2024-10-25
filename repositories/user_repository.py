@@ -3,7 +3,9 @@ from passlib.context import CryptContext
 from pydantic import BaseModel
 
 class User(BaseModel):
-    username: str
+    name: str
+    lastname: str 
+    email: str
     hashed_password: str
 
 #NOTE! hashing is not the responsibility of user_repository, therefore in an actual application the below line would not exist
@@ -11,18 +13,18 @@ class User(BaseModel):
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Mock database
-db = [User(username="username", hashed_password=pwd_context.hash("password"))]
+db = [User(name="name", lastname="lastname", email="email@email.com", hashed_password=pwd_context.hash("password"))]
 
 class UserRepository:
     @staticmethod
-    def create_user(username, hashed_password):
-        user = User(username=username, hashed_password=hashed_password)
+    def create_user(name, lastname, email, hashed_password):
+        user = User(name=name, lastname=lastname, email=email, hashed_password=hashed_password)
         db.append(user)
         return user
 
     @staticmethod
-    def find_by_username(username: str):
+    def find_by_email(email: str):
         for user in db:
-            if user.username == username:
+            if user.email == email:
                 return user
         return None

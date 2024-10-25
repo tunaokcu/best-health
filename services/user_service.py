@@ -3,17 +3,17 @@ from repositories.user_repository import UserRepository
 
 class UserService:
     @staticmethod
-    def signup(username: str, password: str):
-        existing_user = UserRepository.find_by_username(username)
+    def signup(name: str, lastname: str, email:str, password: str, ):
+        existing_user = UserRepository.find_by_email(email)
         if existing_user:
             return None  # Username already exists
 
         hashed_password = AuthService.hash_password(password)
-        return UserRepository.create_user(username, hashed_password)
+        return UserRepository.create_user(name, lastname, email, hashed_password)
 
     @staticmethod
-    def login(username: str, password: str) -> bool:
-        user = UserRepository.find_by_username(username)
+    def login(email: str, password: str) -> bool:
+        user = UserRepository.find_by_email(email)
         # Username does not exist
         if not user:
             return False
