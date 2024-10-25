@@ -21,13 +21,13 @@ async def login(username: str = Form(...), password: str = Form(...)):
         # Redirect to the login page with an error message
         return RedirectResponse(url="/auth/login?error=Invalid credentials", status_code=303)
     
-    # Redirect to a dummy page with a logout button
-    return RedirectResponse(url="/auth/dummy", status_code=303)
+    # Redirect to the dashboard with a logout button
+    return RedirectResponse(url="/auth/dashboard", status_code=303)
 
-# Render the dummy page
-@router.get("/dummy", response_class=HTMLResponse)
-async def dummy_page(request: Request):
-    return templates.TemplateResponse("dummy.html", {"request": request})
+# Render the dummy dashboard page
+@router.get("/dashboard", response_class=HTMLResponse)
+async def get_dashboard_page(request: Request):
+    return templates.TemplateResponse("dashboard.html", {"request": request})
 
 # Redirect from dashboard(dummy) to login
 @router.get("/logout")
