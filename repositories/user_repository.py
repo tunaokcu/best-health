@@ -17,7 +17,7 @@ db = [User(name="name", lastname="lastname", email="email@email.com", hashed_pas
 
 class UserRepository:
     @staticmethod
-    def create_user(name, lastname, email, hashed_password):
+    def create_user(name: str, lastname: str, email: str, hashed_password: str):
         user = User(name=name, lastname=lastname, email=email, hashed_password=hashed_password)
         db.append(user)
         return user

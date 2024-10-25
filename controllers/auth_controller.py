@@ -21,8 +21,8 @@ async def get_login_page(request: Request, error: str = None, message: str = Non
 
 # Handle form submissions to login
 @router.post("/login")
-async def login(username: str = Form(...), password: str = Form(...)):
-    if not UserService.login(username, password):
+async def login(email: str = Form(...), password: str = Form(...)):
+    if not UserService.login(email, password):
         # Redirect to the login page with an error message
         return RedirectResponse(url="/auth/login?error=Invalid credentials", status_code=303)
     
@@ -44,7 +44,7 @@ async def register(firstname: str = Form(...), lastname: str = Form(...), email:
     created_user = UserService.signup(firstname, lastname, email, password)
     if not created_user:
         # Redirect to the login page with an error message
-        return RedirectResponse(url="/auth/register?error=Username already taken", status_code=303)
+        return RedirectResponse(url="/auth/register?error=Email in use", status_code=303)
     
     # Redirect to the login page with a success message
     return RedirectResponse(url="/auth/login?message=Registered successfully", status_code=303)
