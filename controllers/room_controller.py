@@ -10,12 +10,12 @@ router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
 # Render the create room page
-@router.get("/rooms/create")
+@router.get("/create")
 async def get_create_room_page(request: Request, error: str = None, message: str = None):
     return templates.TemplateResponse("create_room.html", {"request": request, "error": error, "message": message})
 
 # Handle form submission to create a room
-@router.post("/rooms/create")
+@router.post("/create")
 async def create_room(name: str = Form(...), status: str = Form(...), type: str = Form(...), description: str = Form(...)):
     result = await RoomService.create_room(name, status, type, description)
     if not result:
@@ -26,13 +26,13 @@ async def create_room(name: str = Form(...), status: str = Form(...), type: str 
     return RedirectResponse(url="/rooms?message=Room created successfully", status_code=303)
 
 # Render the room list page
-@router.get("/rooms", response_class=HTMLResponse)
+@router.get("/", response_class=HTMLResponse)
 async def get_rooms_page(request: Request, message: str = None):
     rooms = await RoomService.get_all_rooms()
     return templates.TemplateResponse("room_list.html", {"request": request, "rooms": rooms, "message": message})
 
 # Render the room details page
-@router.get("/rooms/{id}", response_class=HTMLResponse)
+@router.get("/{id}", response_class=HTMLResponse)
 async def get_room_details_page(request: Request, id: int):
     room = await RoomService.get_room_by_id(id)
     if not room:
