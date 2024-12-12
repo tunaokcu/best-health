@@ -34,7 +34,7 @@ async def get_patients_page(request: Request, message: str = None):
 # Render patient details page
 @router.get("/{id}", response_class=HTMLResponse)
 async def get_patient_details_page(request: Request, id: int):
-    patient = await PatientService.get_patient_details(id)
+    patient = await PatientService.get_patient(id)
     if not patient:
         return RedirectResponse(url="/patients?error=Patient not found", status_code=303)
     return templates.TemplateResponse("patient_details.html", {"request": request, "patient": patient})

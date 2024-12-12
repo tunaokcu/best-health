@@ -8,17 +8,17 @@ class Admission(BaseModel):
     admission_date: str
     reason: str
     assigned_doctor: Optional[str]
-    discharged: Optional[bool] = False  # Indicates if the patient has been discharged
 
+db = [
+    Admission(id=1, patient_id=2, room_id=1, admission_date="12/8/2024", reason="Asthma")
+]
 
 class AdmissionRepository:
     @staticmethod
     def create_admission(patient_id: int, room_id: int, admission_date: str, reason: str, assigned_doctor: str = None):
-        """
-        Create a new admission record in the database.
-        """
-        # Placeholder for database insert operation
-        pass
+        db.insert(
+            Admission(id = len(db)+1, patient_id=patient_id, room_id=room_id, admission_date=admission_date, reason=reason, assigned_doctor=assigned_doctor)
+        )
 
     @staticmethod
     def find_by_id(admission_id: int):
@@ -36,10 +36,3 @@ class AdmissionRepository:
         # Placeholder for database update operation
         pass
 
-    @staticmethod
-    def mark_as_discharged(admission_id: int):
-        """
-        Mark an admission record as discharged in the database.
-        """
-        # Placeholder for database update operation
-        pass
