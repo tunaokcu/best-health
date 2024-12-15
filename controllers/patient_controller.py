@@ -22,9 +22,9 @@ async def get_register_patient_page(request: Request, error: str = None, message
 
 # Handle form submission to register a new patient
 @router.post("/register")
-async def register_patient(firstname: str = Form(...), lastname: str= Form(...), date_of_birth: str = Form(...), address: str = Form(...), contact: str = Form(...),     medical_history: Optional[str] = Form(None),):
+async def register_patient(firstname: str = Form(...), lastname: str= Form(...), gender: str =Form(...), date_of_birth: str = Form(...), address: str = Form(...), contact: str = Form(...),     medical_history: Optional[str] = Form(None),):
     logger.debug("Register route accessed")
-    result = PatientService.register_patient(firstname, lastname, date_of_birth, address, contact, medical_history)
+    result = PatientService.register_patient(firstname, lastname, gender, date_of_birth, address, contact, medical_history)
     if not result:
         # Redirect to the patient registration page with an error message
         return RedirectResponse(url="/patients/register?error=Patient registration failed", status_code=303)

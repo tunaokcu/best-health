@@ -29,14 +29,14 @@ class PatientService:
 
     @staticmethod 
     # TODO 
-    def register_patient(name: str, lastName: str, date_of_birth: str, address: str, contact: str, medical_history: str = None):
+    def register_patient(name: str, lastName: str, gender:str, date_of_birth: str, address: str, contact: str, medical_history: str = None):
         # Check if a patient with the same contact already exists
         existing_patient = PatientRepository.find_by_contact(contact)
         if existing_patient:
             return None  # Patient with this contact already exists
 
         # Create and return the patient record
-        return PatientRepository.create_patient(name + " " + lastName, date_of_birth, address, contact, medical_history)
+        return PatientRepository.create_patient(name + " " + lastName, date_of_birth, gender, address, contact, medical_history)
 
     @staticmethod
     def get_all_patients():

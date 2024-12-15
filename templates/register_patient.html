@@ -187,6 +187,80 @@ body {
 
     
 
+/* Styling for the input fields */
+.inputBox {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Styling for the text input fields */
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #333; /* Same as the input fields */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Styling for the dropdown (select) */
+.inputBox select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #333; /* Same as the input fields */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: none; /* Remove default browser dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Style for the dropdown placeholder (default option) */
+.inputBox select option {
+    color: #888;
+}
+
+/* Adding a custom arrow for the dropdown */
+.inputBox select::after {
+    content: '▼';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent the arrow from interfering with the dropdown */
+}
+
+/* When the select is focused */
+.inputBox select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* For consistency with form input fields */
+.inputBox input:focus, .inputBox select:focus {
+    border-color: #007bff;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
 
       </style>
     </head>
@@ -213,6 +287,13 @@ body {
                         <i>Last name</i>
                     </div>
                     <div class="inputBox">
+                        <select id="gender" name="gender" required>
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="inputBox">
                         <input type="text" id="address" name="address" required>
                         <i>Address</i>
                     </div>
@@ -220,16 +301,16 @@ body {
                         <input type="text" id="contact" name="contact" required>
                         <i>Contact</i>
                     </div>
-                    <div class="inputBox">
-                        <input type="text" id="medical_history" name="medical_history"></input>
-                        <i>Medical History</i>
-                    </div>
 
                     <div class="inputBox">
                         <input type="date" id="date_of_birth" name="date_of_birth" required> 
                         <i>Date of Birth</i>
                     </div>
 
+                    <h6>Medical History</h6>
+                        <div class="inputBox">
+                            <textarea id="medical_history" name="medical_history" rows="4"></textarea>
+                        </div>
                     {% if error %}
                         <p style="color: red;">{{ error }}</p>
                     {% endif %}
