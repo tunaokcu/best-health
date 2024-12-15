@@ -2,16 +2,16 @@ from fastapi import APIRouter, Form, Request, Depends
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from services.patient_service import PatientService
-from services.user_service import UserService
 from services.room_service import RoomService
 from starlette.responses import HTMLResponse
 from typing import Optional
-
+ 
 import logging
 
 logger = logging.getLogger("uvicorn")
 
-router = APIRouter(dependencies=[Depends(UserService.is_loggedin)])
+
+router = APIRouter()
 
 # Set up Jinja2 template rendering
 templates = Jinja2Templates(directory="templates")
@@ -47,5 +47,5 @@ async def get_patient_details_page(request: Request, id: int):
     if not patient:
         return RedirectResponse(url="/patients?error=Patient not found", status_code=303)
     available_rooms = RoomService.get_available_rooms()
-    
+
     return templates.TemplateResponse("patient_details.html", {"request": request, "patient": patient, "available_rooms": available_rooms})

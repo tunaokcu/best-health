@@ -9,6 +9,7 @@ router = APIRouter()
 # Set up Jinja2 template rendering
 templates = Jinja2Templates(directory="templates")
 
+
 # Render the register page
 @router.get("/register")
 async def get_register_page(request: Request, error: str = None, message: str = None):
@@ -31,7 +32,7 @@ async def login(email: str = Form(...), password: str = Form(...)):
 
 # Render the dummy dashboard page
 @router.get("/dashboard", response_class=HTMLResponse)
-async def get_dashboard_page(request: Request, permission: bool = Depends(UserService.is_loggedin)):
+async def get_dashboard_page(request: Request):
     return templates.TemplateResponse("dashboard.html", {"request": request})
 
 # Redirect from dashboard(dummy) to login
@@ -49,3 +50,4 @@ async def register(firstname: str = Form(...), lastname: str = Form(...), email:
     
     # Redirect to the login page with a success message
     return RedirectResponse(url="/auth/login?message=Registered successfully", status_code=303)
+

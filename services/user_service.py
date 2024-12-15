@@ -37,5 +37,4 @@ class UserService:
     @staticmethod 
     def is_loggedin() -> bool:
         global logged_in
-        if not logged_in:
-            raise HTTPException(status_code=403, detail="You must be logged in to view this page")
+        return logged_in

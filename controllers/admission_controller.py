@@ -6,8 +6,7 @@ from services.user_service import UserService
 from starlette.responses import HTMLResponse
 from typing import Optional
 
-
-router = APIRouter(dependencies=[Depends(UserService.is_loggedin)])
+router = APIRouter()
 
 # Set up Jinja2 template rendering
 templates = Jinja2Templates(directory="templates")

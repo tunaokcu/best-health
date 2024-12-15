@@ -7,9 +7,14 @@ from controllers import auth_controller
 from controllers import room_controller
 from controllers import patient_controller
 from controllers import admission_controller
+from middleware.auth_middleware import AuthenticationMiddleware
+from middleware.login_redirect_middleware import LoginRedirectMiddleware
 
 
 app = FastAPI(debug=True)
+
+app.add_middleware(AuthenticationMiddleware)
+app.add_middleware(LoginRedirectMiddleware)
 
 # Serve static files(CSS)
 app.mount("/static", StaticFiles(directory="static"), name="static")
