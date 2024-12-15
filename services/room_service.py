@@ -5,8 +5,9 @@ class RoomService:
     @staticmethod
     def is_available(room_id):
         room = RoomRepository.find_by_id(room_id)
-        if not room or room.status != STATUS_AVAILABLE:
-            return None  
+
+        return room and room.status == STATUS_AVAILABLE
+
         
     @staticmethod
     def mark_as_available(room_id):

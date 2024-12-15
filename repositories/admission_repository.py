@@ -7,7 +7,6 @@ class Admission(BaseModel):
     room_id: int       # Foreign key referencing the Room
     admission_date: str
     reason: str
-    assigned_doctor: Optional[str] = None
 
 db = [
     Admission(id=1, patient_id=2, room_id=1, admission_date="12/8/2024", reason="Asthma")
@@ -19,10 +18,12 @@ class AdmissionRepository:
         return db 
     
     @staticmethod
-    def create_admission(patient_id: int, room_id: int, admission_date: str, reason: str, assigned_doctor: str = None):
-        db.insert(
-            Admission(id = len(db)+1, patient_id=patient_id, room_id=room_id, admission_date=admission_date, reason=reason, assigned_doctor=assigned_doctor)
-        )
+    def create_admission(patient_id: int, room_id: int, admission_date: str, reason: str):
+        admission =             Admission(id = len(db)+1, patient_id=patient_id, room_id=room_id, admission_date=admission_date, reason=reason)
+
+        db.append(admission)
+        return admission
+
 
     @staticmethod
     def find_by_id(admission_id: int):

@@ -45,7 +45,7 @@ class RoomRepository:
     @staticmethod 
     # Edit room_type and description
     def edit_room(room_id: int, room_type=None, description=None):
-        if len(db) > room_id:
+        if len(db) < room_id:
             return None 
         
         room = db[room_id-1]
@@ -56,7 +56,8 @@ class RoomRepository:
         
     @staticmethod
     def update_room_status(room_id: int, status: str, occupant_id=None):
-        if len(db) > room_id:
+        print("here")
+        if len(db) < room_id:
             return None 
         
         room = db[room_id-1]
@@ -64,6 +65,8 @@ class RoomRepository:
         description = room.description 
 
         db[room_id-1] = Room(id=room_id, status=status, type=roomType, description=description, occupant_id=occupant_id)
+
+        print(db)
 
     @staticmethod
     def find_all_rooms():

@@ -17,8 +17,8 @@ def get_admit_patient_page(request: Request, error: str = None, message: str = N
 
 # Handle form submission to admit a patient
 @router.post("/admit")
-def admit_patient(patient_id: int = Form(...), room_id: int = Form(...), admission_date: str = Form(...), reason: str = Form(...), assigned_doctor: str = Form(...)):
-    result = AdmissionService.admit_patient(patient_id, room_id, admission_date, reason, assigned_doctor)
+def admit_patient(patient_id: int = Form(...), room_id: int = Form(...), admission_date: str = Form(...), reason: str = Form(...)):
+    result = AdmissionService.admit_patient(patient_id, room_id, admission_date, reason)
     if not result:
         # Redirect to the admit patient page with an error message
         return RedirectResponse(url="/admissions/admit?error=Admission failed", status_code=303)

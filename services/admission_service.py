@@ -4,20 +4,22 @@ from services.patient_service import PatientService
 
 class AdmissionService:
     @staticmethod
-    def admit_patient(patient_id: int, room_id: int, admission_date: str, reason: str, assigned_doctor: str = None):
+    def admit_patient(patient_id: int, room_id: int, admission_date: str, reason: str):
         # Check if the room is available
         if not RoomService.is_available(room_id):
+            print("room not available")
             return None 
 
         # Check if the patient is already admitted
         if PatientService.is_admitted(patient_id):
+            print("patient is admitted")
             return None
 
         # Create the admission record 
-        admission = AdmissionRepository.create_admission(patient_id, room_id, admission_date, reason, assigned_doctor)
+        admission = AdmissionRepository.create_admission(patient_id, room_id, admission_date, reason)
 
         # Mark room as occupied
-        RoomService.mark_room_as_occupied(room_id)
+        RoomService.mark_as_occupied(room_id, patient_id)
 
         # Set the patient's occupied room number
         PatientService.set_occupied_room(patient_id, room_id)

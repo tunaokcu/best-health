@@ -227,17 +227,24 @@ body {
                         </div>
                         {% else %}
                             <!-- If the patient doesn't have a room number -->
-                            <div class="patient-actions">
-                                <div class="admit-room">
-                                    <label for="admit-room">Select Room:</label>
-                                    <select id="admit-room" name="admit-room">
-                                        {% for room in available_rooms %}
-                                            <option value="{{ room.id }}">{{ room.id }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <button class="btn admit-room-btn">Admit to Room</button>
-                                </div>
-                            </div>
+                            <form action="/admissions/admit" method="post">
+                                <input type="hidden" name="patient_id" value="{{ patient.id }}">
+                                <label for="room_id">Room:</label>
+                                <select id="room_id" name="room_id">
+                                    {% for room in available_rooms %}
+                                        <option value="{{ room.id }}">{{ room.id }}</option>
+                                    {% endfor %}
+                                </select><br>
+                                
+                                <label for="admission_date">Admission Date:</label>
+                                <input type="date" id="admission_date" name="admission_date" required><br>
+                            
+                                <label for="reason">Reason for Admission:</label>
+                                <textarea id="reason" name="reason" required></textarea><br>
+                            
+                            
+                                <button type="submit" class="btn admit-room-btn">Admit Patient</button>
+                            </form>
                         {% endif %}
 
                     </div>
@@ -245,5 +252,10 @@ body {
         </div>
     </div>
     </section>
+
+    <script>
+        // Set today's date in the admission date field
+        document.getElementById('admission_date').value = new Date().toISOString().split('T')[0];
+    </script>
 </body>
 </html>
