@@ -212,18 +212,24 @@ body {
                         <p><span class="label">Room Number:</span> <span class="value">{{ patient.room_number }}</span></p>
                         
                         {% if patient.room_number %}
-                        <!-- If the patient has a room number -->
                         <div class="patient-actions">
-                            <button class="btn discharge">Discharge Patient</button>
-                            <div class="change-room">
+                            <!-- Form for discharging the patient -->
+                            <form action="/admissions/discharge" method="post">
+                                <input type="hidden" name="patient_id" value="{{ patient.id }}">
+                                <button type="submit" class="btn discharge">Discharge Patient</button>
+                            </form>
+                        
+                            <!-- Form for changing the room -->
+                            <form action="/admissions/change-room" method="post">
+                                <input type="hidden" name="patient_id" value="{{ patient.id }}">
                                 <label for="change-room">Change Room Number:</label>
-                                <select id="change-room" name="change-room">
+                                <select id="change-room" name="room_id">
                                     {% for room in available_rooms %}
-                                        <option value="{{ room.id }}">{{ room.name }}</option>
+                                        <option value="{{ room.id }}">{{ room.id }}</option>
                                     {% endfor %}
                                 </select>
-                                <button class="btn change-room-btn">Change Room</button>
-                            </div>
+                                <button type="submit" class="btn change-room-btn">Change Room</button>
+                            </form>
                         </div>
                         {% else %}
                             <!-- If the patient doesn't have a room number -->

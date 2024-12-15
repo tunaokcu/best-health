@@ -27,6 +27,29 @@ class AdmissionService:
         return admission
 
     @staticmethod
+    def change_room(patient_id: int, room_id: int):
+        # Check if the room is available
+        if not RoomService.is_available(room_id):
+            print("room not available")
+            return None 
+        
+        # Update the admission record 
+        # TODO
+        
+        # Find former room id
+        former_room_id = PatientService.get_patient(patient_id).room_number
+
+        # Set former room to unoccupied
+        RoomService.mark_as_available(former_room_id)
+
+        # Set new room to occupied
+        RoomService.mark_as_occupied(room_id, patient_id)
+
+        # Set the patient's occupied room number
+        PatientService.set_occupied_room(patient_id, room_id)
+
+
+    @staticmethod
     def get_admission_details(admission_id: int):
         return AdmissionRepository.find_by_id(admission_id)
 
@@ -59,6 +82,11 @@ class AdmissionService:
 
         # Update the room status to available
         RoomService.mark_as_available(PatientService.get_room_number(patient_id))
+
+        # Update patient's room to none
+        PatientService.discharge_patient(patient_id)
+
+        return True
 
     @staticmethod
     def get_all_admissions():

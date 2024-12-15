@@ -4,6 +4,8 @@ from fastapi.templating import Jinja2Templates
 from services.admission_service import AdmissionService
 from services.user_service import UserService
 from starlette.responses import HTMLResponse
+from typing import Optional
+
 
 router = APIRouter(dependencies=[Depends(UserService.is_loggedin)])
 
@@ -25,6 +27,44 @@ def admit_patient(patient_id: int = Form(...), room_id: int = Form(...), admissi
     
     # Redirect to the admission list page with a success message
     return RedirectResponse(url="/admissions?message=Patient admitted successfully", status_code=303)
+
+# Route to discharge the patient
+@router.post("/discharge")
+async def discharge_patient(patient_id: int = Form(...)):
+    result = AdmissionService.discharge_patient(patient_id)
+    if result:
+        return RedirectResponse(url="/admissions?message=Patient discharged successfully", status_code=303)
+    else:
+        return RedirectResponse(url="/admissions?error=Failed to discharge patient", status_code=303)
+
+# Route to change the room for a patient
+@router.post("/change-room")
+async def change_room(patient_id: int = Form(...), room_id: int = Form(...)):
+    result = AdmissionService.change_room(patient_id, room_id)
+    if result:
+        return RedirectResponse(url="/admissions?message=Room changed successfully", status_code=303)
+    else:
+        return RedirectResponse(url="/admissions?error=Failed to change room", status_code=303)
+"""
+# Route to handle room change or discharge patient
+@router.post("/change-room")
+async def change_room(
+    patient_id: int = Form(...),
+    room_id: Optional[int] = Form(None),  # room_id is optional, used only if changing room
+):
+    if room_id is not None:
+        # Logic to change the room
+        result = AdmissionService.change_room(patient_id, room_id)
+        return RedirectResponse(url="/admissions?message=Room changed successfully", status_code=303)
+
+    else:
+        # Logic to discharge the patient
+        result = AdmissionService.discharge_patient(patient_id)
+        if result:
+            return RedirectResponse(url="/admissions?message=Patient discharged successfully", status_code=303)
+        else:
+            return RedirectResponse(url="/admissions?error=Failed to discharge patient", status_code=303)
+"""
 
 # Render the admission list page
 @router.get("/", response_class=HTMLResponse)
