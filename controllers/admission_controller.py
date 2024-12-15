@@ -13,14 +13,19 @@ router = APIRouter(dependencies=[Depends(UserService.is_loggedin)])
 templates = Jinja2Templates(directory="templates")
 
 # Render the admit patient page
+"""
 @router.get("/admit")
 def get_admit_patient_page(request: Request, error: str = None, message: str = None):
+    return RedirectResponse(url="/patients")
     return templates.TemplateResponse("admit_patient.html", {"request": request, "error": error, "message": message})
-
+"""
 # Handle form submission to admit a patient
 @router.post("/admit")
 def admit_patient(patient_id: int = Form(...), room_id: int = Form(...), admission_date: str = Form(...), reason: str = Form(...)):
     result = AdmissionService.admit_patient(patient_id, room_id, admission_date, reason)
+
+    return RedirectResponse(url=f"/patients/{patient_id}", status_code=303)
+
     if not result:
         # Redirect to the admit patient page with an error message
         return RedirectResponse(url="/admissions/admit?error=Admission failed", status_code=303)
@@ -32,6 +37,9 @@ def admit_patient(patient_id: int = Form(...), room_id: int = Form(...), admissi
 @router.post("/discharge")
 async def discharge_patient(patient_id: int = Form(...)):
     result = AdmissionService.discharge_patient(patient_id)
+    return RedirectResponse(url=f"/patients/{patient_id}", status_code=303)
+
+
     if result:
         return RedirectResponse(url="/admissions?message=Patient discharged successfully", status_code=303)
     else:
@@ -41,6 +49,9 @@ async def discharge_patient(patient_id: int = Form(...)):
 @router.post("/change-room")
 async def change_room(patient_id: int = Form(...), room_id: int = Form(...)):
     result = AdmissionService.change_room(patient_id, room_id)
+    return RedirectResponse(url=f"/patients/{patient_id}", status_code=303)
+
+
     if result:
         return RedirectResponse(url="/admissions?message=Room changed successfully", status_code=303)
     else:
