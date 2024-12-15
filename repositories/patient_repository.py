@@ -24,7 +24,7 @@ class PatientRepository:
 
     @staticmethod
     def create_patient(name: str, date_of_birth: str, address: str, contact: str, medical_history: str = None):
-        patient = Patient(id=len(db_patients) + 1, name=name, date_of_birth=date_of_birth, address=address, contact=contact, medical_history=medical_history)
+        patient = Patient(id=len(db_patients) + 1, name=name, date_of_birth=date_of_birth, gender="male", address=address, contact=contact, medical_history=medical_history)
         db_patients.append(patient)
         return patient
 

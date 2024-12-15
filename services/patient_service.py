@@ -36,7 +36,7 @@ class PatientService:
             return None  # Patient with this contact already exists
 
         # Create and return the patient record
-        return PatientRepository.create_patient(name, lastName, date_of_birth, address, contact, medical_history)
+        return PatientRepository.create_patient(name + " " + lastName, date_of_birth, address, contact, medical_history)
 
     @staticmethod
     def get_all_patients():
