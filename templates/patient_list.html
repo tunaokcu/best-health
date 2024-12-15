@@ -130,18 +130,20 @@ background: linear-gradient(to right, #000, #0f0, #000);
 margin: 20px 0;
 }
  
+/* Body: Ensure scrollable content and full width */
 body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center; /* Center the content horizontally */
-            align-items: center;     /* Center the content vertically */
-            height: 100vh;           /* Full height */
-            flex-direction: column;  /* Stack items vertically */
-            text-align: center;      /* Center the text in the container */
-        }
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Section: Provide padding at the top to avoid overlap with the navbar */
+section {
+    padding-top: 60px; /* Adjust this value to match navbar height */
+    margin: 0 auto;
+    max-width: 1200px; /* Center content and limit width */
+}
 
         .patient-container {
             width: 100%;
