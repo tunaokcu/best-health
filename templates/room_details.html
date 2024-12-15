@@ -159,8 +159,6 @@ margin: 20px 0;
     <br>
         <div class="signin"> 
         <div class="content"> 
-            {% for room in rooms %}
-            <a href="/rooms/{{ room.id }}">
                 <div class="room {{ room.status }}">
                     <h3>Room {{ room.id }} - {{ room.type }}</h3>
                     <p>Status: {{ room.status }}</p>
@@ -169,8 +167,6 @@ margin: 20px 0;
                     <p>Occupant ID: {{ room.occupant_id }}</p>
                     {% endif %}
                 </div>
-            </a>
-            {% endfor %}
         </div>
     </div>
     </section>

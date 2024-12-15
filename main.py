@@ -19,7 +19,6 @@ app.include_router(room_controller.router, prefix="/rooms")
 app.include_router(patient_controller.router, prefix="/patients")
 app.include_router(admission_controller.router, prefix="/admissions")
 
-"""
 # Redirect all requests to the root ("/") to "/auth/login"
 @app.get("/")
 async def root_redirect():
@@ -28,4 +27,4 @@ async def root_redirect():
 # Redirect all requests to ("/auth") to "/auth/login"
 @app.get("/auth")
 async def auth_redirect():
-    return RedirectResponse(url="/auth/login")"""
+    return RedirectResponse(url="/auth/login")

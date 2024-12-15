@@ -14,8 +14,17 @@ class Patient(BaseModel):
 # Mock database for patients
 db_patients = [
     Patient(id=1, name="John Doe", date_of_birth="1985-08-15", gender="male", address="123 Main St", contact="123-456-7890", medical_history="No major issues"),
-    Patient(id=2, name="Jane Smith", date_of_birth="1990-05-22", gender="female", address="456 Oak St", contact="987-654-3210", medical_history="Asthma", room_number=1)
+    Patient(id=2, name="Jane Smith", date_of_birth="1990-05-22", gender="female", address="456 Oak St", contact="987-654-3210", medical_history="Asthma", room_number=1),
+    Patient(id=3, name="Emily Johnson", date_of_birth="1978-11-03", gender="female", address="789 Pine St", contact="555-123-4567", medical_history="Diabetes", room_number=6),
+    Patient(id=4, name="Michael Brown", date_of_birth="2002-02-17", gender="male", address="101 Maple St", contact="555-987-6543", medical_history="No allergies"),
+    Patient(id=5, name="Sarah Lee", date_of_birth="1989-07-25", gender="female", address="202 Birch St", contact="555-876-5432", medical_history="Hypertension"),
+    Patient(id=6, name="David Wilson", date_of_birth="1995-01-30", gender="male", address="303 Cedar St", contact="555-432-8765", medical_history="No chronic conditions"),
+    Patient(id=7, name="Olivia Martinez", date_of_birth="1982-12-05", gender="female", address="404 Cherry St", contact="555-654-3210", medical_history="High cholesterol"),
+    Patient(id=8, name="James Harris", date_of_birth="1975-09-14", gender="male", address="505 Redwood St", contact="555-321-7654", medical_history="Heart disease"),
+    Patient(id=9, name="Mia Clark", date_of_birth="1998-03-29", gender="female", address="606 Willow St", contact="555-765-4321", medical_history="Migraines"),
+    Patient(id=10, name="Ethan Lewis", date_of_birth="2000-10-11", gender="male", address="707 Elm St", contact="555-987-4321", medical_history="No significant health issues")
 ]
+
 
 class PatientRepository:
     @staticmethod 

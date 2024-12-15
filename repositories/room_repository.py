@@ -25,7 +25,7 @@ db = [Room(id=1, status=STATUS_OCCUPIED, type=TYPE_ICU, occupant_id=2),
       Room(id=3, status=STATUS_AVAILABLE, type=TYPE_GENERAL),
       Room(id=4, status=STATUS_AVAILABLE, type=TYPE_GENERAL),
       Room(id=5, status=STATUS_AVAILABLE, type=TYPE_PRIVATE),
-      Room(id=6, status=STATUS_OCCUPIED, type=TYPE_PRIVATE)
+      Room(id=6, status=STATUS_OCCUPIED, type=TYPE_PRIVATE, occupant_id=3)
     ]
 
 class RoomRepository:
