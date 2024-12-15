@@ -17,6 +17,7 @@ async def get_register_page(request: Request, error: str = None, message: str = 
 # Render the login page
 @router.get("/login")
 async def get_login_page(request: Request, error: str = None, message: str = None):
+    print("here")
     return templates.TemplateResponse("login.html", {"request": request, "error": error, "message": message})
 
 # Handle form submissions to login

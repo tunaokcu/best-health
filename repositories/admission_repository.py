@@ -7,13 +7,17 @@ class Admission(BaseModel):
     room_id: int       # Foreign key referencing the Room
     admission_date: str
     reason: str
-    assigned_doctor: Optional[str]
+    assigned_doctor: Optional[str] = None
 
 db = [
     Admission(id=1, patient_id=2, room_id=1, admission_date="12/8/2024", reason="Asthma")
 ]
 
 class AdmissionRepository:
+    @staticmethod
+    def find_all_admissions():
+        return db 
+    
     @staticmethod
     def create_admission(patient_id: int, room_id: int, admission_date: str, reason: str, assigned_doctor: str = None):
         db.insert(
@@ -35,4 +39,3 @@ class AdmissionRepository:
         """
         # Placeholder for database update operation
         pass
-

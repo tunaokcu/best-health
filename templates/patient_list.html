@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard</title>
-        <link rel="stylesheet" href="../static/style.css">
         <style>
        /* Navigation bar styles */
        nav {
@@ -130,6 +129,62 @@ height: 2px;
 background: linear-gradient(to right, #000, #0f0, #000);
 margin: 20px 0;
 }
+ 
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center;     /* Center the content vertically */
+            height: 100vh;           /* Full height */
+            flex-direction: column;  /* Stack items vertically */
+            text-align: center;      /* Center the text in the container */
+        }
+
+        .patient-container {
+            width: 100%;
+            max-width: 800px; /* Limit width to avoid too wide cards */
+            padding: 20px;
+        }
+
+        .patient-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px; /* Space between cards */
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .patient-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .patient-card h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .patient-card p {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .patient-card .label {
+            font-weight: bold;
+        }
+
+        .patient-card .value {
+            color: #34495e;
+        }
+
+    
+
 
       </style>
     </head>
@@ -138,10 +193,27 @@ margin: 20px 0;
 
 
     <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
-    <div class="signin"> 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+        <div class="signin"> 
         <div class="content"> 
-            <h2>Welcome to your Dashboard! You are logged in.</h2>
-            <p>Hello</p>
+            <div class="patient-container">
+                {% for patient in patients %}
+                    <div class="patient-card">
+                        <h3>Patient ID: {{ patient.id }}</h3>
+                        <p><span class="label">Name:</span> <span class="value">{{ patient.name }}</span></p>
+                        <p><span class="label">Date of Birth:</span> <span class="value">{{ patient.date_of_birth }}</span></p>
+                        <p><span class="label">Gender:</span> <span class="value">{{ patient.gender }}</span></p>
+                        <p><span class="label">Address:</span> <span class="value">{{ patient.address }}</span></p>
+                        <p><span class="label">Contact:</span> <span class="value">{{ patient.contact }}</span></p>
+                        <p><span class="label">Medical History:</span> <span class="value">{{ patient.medical_history }}</span></p>
+                        <p><span class="label">Room Number:</span> <span class="value">{{ patient.room_number }}</span></p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     </section>

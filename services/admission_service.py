@@ -45,19 +45,19 @@ class AdmissionService:
         # Update the admission record
         updated_admission = AdmissionRepository.update_admission(admission_id, room_id, admission_date, reason, assigned_doctor)
         if updated_admission:
-            RoomRepository.update_room_status(room_id, "occupied")
+            RoomService.mark_as_occupied(room_id)
 
         return updated_admission
 
     @staticmethod
     def discharge_patient(patient_id: int):
-
         # Check if the patient is admitted
         if not PatientService.is_admitted(patient_id):
-            return False 
+            return None 
 
         # Update the room status to available
         RoomService.mark_as_available(PatientService.get_room_number(patient_id))
 
-        # Remove or mark the admission as discharged
-        return AdmissionRepository.mark_as_discharged(admission_id)
+    @staticmethod
+    def get_all_admissions():
+        return AdmissionRepository.find_all_admissions()

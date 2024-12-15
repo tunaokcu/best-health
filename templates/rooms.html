@@ -4,65 +4,159 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard</title>
-        <link rel="stylesheet" href="../static/style.css">
         <style>
-          /* Navigation bar styles */
-          nav {
-              position: absolute;
-              top: 0;
-              width: 100%;
-              background: #222;
-              padding: 10px 20px;
-              z-index: 100;
-          }
+       /* Navigation bar styles */
+       nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: #222;
+            padding: 10px 20px;
+            z-index: 100;
+        }
 
-          nav ul {
-              list-style-type: none;
-              display: flex;
-              justify-content: flex-start;
-              align-items: center;
-          }
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
 
-          nav ul li {
-              margin-right: 20px;
-          }
+        nav ul li {
+            margin-right: 20px;
+        }
 
-          nav ul li a {
-              color: #fff;
-              text-decoration: none;
-              font-weight: 500;
-              font-size: 1.2em;
-          }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.2em;
+        }
 
-          nav ul li a:hover {
-              color: #0f0;
-          }
+        nav ul li a:hover {
+            color: #0f0;
+        }
 
-          /* Ensure content isn't hidden behind the navbar */
-          section {
-              padding-top: 0px;
-          }
+        /* Ensure content isn't hidden behind the navbar */
+        section {
+            padding-top: 0px;
+        }
+
+        /* Style for paragraphs */
+p {
+font-size: 1em;
+line-height: 1.6;
+color: #ddd;
+margin: 10px 0;
+text-align: justify;
+}
+
+/* Additional style for headings (H1-H6) */
+h1, h2, h3, h4, h5, h6 {
+font-weight: 600;
+color: #0f0;
+margin: 10px 0;
+text-transform: uppercase;
+}
+h1 {
+font-size: 2.5em;
+}
+h2 {
+font-size: 2em;
+}
+h3 {
+font-size: 1.75em;
+}
+h4, h5, h6 {
+font-size: 1.5em;
+}
+
+/* Lists */
+ul, ol {
+margin: 10px 0 10px 20px;
+color: #ccc;
+}
+ul li, ol li {
+margin: 5px 0;
+}
+
+/* Buttons */
+button {
+background-color: #0f0;
+color: #000;
+border: none;
+padding: 10px 20px;
+border-radius: 4px;
+font-size: 1em;
+font-weight: 600;
+cursor: pointer;
+transition: background-color 0.3s, transform 0.2s;
+}
+button:hover {
+background-color: #0d0;
+}
+button:active {
+transform: scale(0.95);
+}
+
+/* Blockquotes */
+blockquote {
+padding: 10px 20px;
+margin: 20px 0;
+background: #222;
+border-left: 5px solid #0f0;
+color: #bbb;
+font-style: italic;
+}
+
+/* Links */
+a {
+color: #0f0;
+text-decoration: none;
+transition: color 0.3s;
+}
+a:hover {
+color: #0d0;
+}
+a:visited {
+color: #0c0;
+}
+
+/* Horizontal Rule */
+hr {
+border: 0;
+height: 2px;
+background: linear-gradient(to right, #000, #0f0, #000);
+margin: 20px 0;
+}
+
+
       </style>
     </head>
 <body>
-    <!-- Navigation bar -->
-    <nav>
-      <ul>
-          <li><a href="/patients">Patient Admission</a></li>
-          <li><a href="/inpatient-management">Inpatient Management</a></li>
-      </ul>
-    </nav>
+    {% include 'navbar.html' %}
+
+
     <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
-    <div class="signin"> 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+        <div class="signin"> 
         <div class="content"> 
-            <h2>Welcome to your Dashboard! You are logged in.</h2>
-            <div class="form" >
-                <form action="/auth/logout" method="get">
-                    <div class="inputBox"> 
-                        <input type="submit" value="Logout"> 
-                    </div> 
-                </form>
-            </div>
+            {% for room in rooms %}
+            <a href = /rooms/{room.id}>
+                <div class="room {{ room.status }}">
+                    <h3>Room {{ room.id }} - {{ room.type }}</h3>
+                    <p>Status: {{ room.status }}</p>
+                    <p>Description: {{ room.description if room.description else "No description" }}</p>
+                    {% if room.occupant_id %}
+                    <p>Occupant ID: {{ room.occupant_id }}</p>
+                    {% endif %}
+                </div>
+            </a>
+            {% endfor %}
         </div>
     </div>
     </section>

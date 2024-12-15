@@ -31,3 +31,7 @@ class RoomService:
     @staticmethod
     def get_all_rooms():
         return RoomRepository.find_all_rooms()
+
+    @staticmethod
+    def get_available_rooms():
+        return [room for room in RoomService.get_all_rooms() if room.status == STATUS_AVAILABLE]

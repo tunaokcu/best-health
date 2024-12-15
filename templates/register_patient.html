@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard</title>
         <link rel="stylesheet" href="../static/style.css">
+
         <style>
        /* Navigation bar styles */
        nav {
@@ -130,6 +131,62 @@ height: 2px;
 background: linear-gradient(to right, #000, #0f0, #000);
 margin: 20px 0;
 }
+ 
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center;     /* Center the content vertically */
+            height: 100vh;           /* Full height */
+            flex-direction: column;  /* Stack items vertically */
+            text-align: center;      /* Center the text in the container */
+        }
+
+        .patient-container {
+            width: 100%;
+            max-width: 800px; /* Limit width to avoid too wide cards */
+            padding: 20px;
+        }
+
+        .patient-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px; /* Space between cards */
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .patient-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .patient-card h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .patient-card p {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .patient-card .label {
+            font-weight: bold;
+        }
+
+        .patient-card .value {
+            color: #34495e;
+        }
+
+    
+
 
       </style>
     </head>
@@ -138,12 +195,62 @@ margin: 20px 0;
 
 
     <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
-    <div class="signin"> 
-        <div class="content"> 
-            <h2>Welcome to your Dashboard! You are logged in.</h2>
-            <p>Hello</p>
-        </div>
-    </div>
-    </section>
+      
+<!-- register.html -->
+    <div class="signin">
+        <div class="content">
+            <h2>Register Patient</h2>
+
+            <form action="/patients/register/" method="post">
+
+                <div class="form">
+                    <div class="inputBox">
+                        <input type="text" id="firstname" name="name" required>
+                        <i>First name</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" id="lastname" name="lastname" required>
+                        <i>Last name</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" id="address" name="address" required>
+                        <i>Address</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" id="contact" name="contact" required>
+                        <i>Contact</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" id="medical_history" name="medical_history"></input>
+                        <i>Medical History</i>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="date" id="date_of_birth" name="date_of_birth" required> 
+                        <i>Date of Birth</i>
+                    </div>
+
+                    {% if error %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+
+                    {% if message %}
+                        <p style="color: green;">{{ message }}</p>
+                    {% endif %}
+
+                    <div class="inputBox">
+                        <input type="submit" value="Register">
+                    </div>
+
+                </div>
+                </div>
+            </form>
+
+
+
+        </section> <!-- partial --> 
+
+
 </body>
 </html>
+

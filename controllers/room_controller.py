@@ -4,6 +4,8 @@ from fastapi.templating import Jinja2Templates
 from services.room_service import RoomService
 from starlette.responses import HTMLResponse
 
+
+
 router = APIRouter()
 
 # Set up Jinja2 template rendering
@@ -29,7 +31,8 @@ async def create_room(name: str = Form(...), status: str = Form(...), type: str 
 @router.get("/", response_class=HTMLResponse)
 async def get_rooms_page(request: Request, message: str = None):
     rooms = await RoomService.get_all_rooms()
-    return templates.TemplateResponse("room_list.html", {"request": request, "rooms": rooms, "message": message})
+    print(rooms)
+    return templates.TemplateResponse("rooms.html", {"request": request, "rooms": rooms, "message": message})
 
 # Render the room details page
 @router.get("/{id}", response_class=HTMLResponse)

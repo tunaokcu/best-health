@@ -4,3 +4,4 @@ passlib
 python-multipart
 jinja2
 bcrypt
+requests
