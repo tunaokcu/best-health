@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Form, Request
+from fastapi import APIRouter, Form, Request, Depends
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from services.user_service import UserService
@@ -17,7 +17,6 @@ async def get_register_page(request: Request, error: str = None, message: str = 
 # Render the login page
 @router.get("/login")
 async def get_login_page(request: Request, error: str = None, message: str = None):
-    print("here")
     return templates.TemplateResponse("login.html", {"request": request, "error": error, "message": message})
 
 # Handle form submissions to login
@@ -32,12 +31,13 @@ async def login(email: str = Form(...), password: str = Form(...)):
 
 # Render the dummy dashboard page
 @router.get("/dashboard", response_class=HTMLResponse)
-async def get_dashboard_page(request: Request):
+async def get_dashboard_page(request: Request, permission: bool = Depends(UserService.is_loggedin)):
     return templates.TemplateResponse("dashboard.html", {"request": request})
 
 # Redirect from dashboard(dummy) to login
 @router.get("/logout")
 async def logout():
+    UserService.logout()
     return RedirectResponse(url="/auth/login", status_code=303)
 
 @router.post("/register")

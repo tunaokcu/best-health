@@ -1,7 +1,11 @@
 from services.auth_service import AuthService
 from repositories.user_repository import UserRepository
+from fastapi import HTTPException
+
+logged_in = False 
 
 class UserService:
+    
     @staticmethod
     def signup(name: str, lastname: str, email:str, password: str, ):
         existing_user = UserRepository.find_by_email(email)
@@ -18,10 +22,20 @@ class UserService:
         if not user:
             return False
         
+        global logged_in 
+        logged_in = True 
+
         # Return true if the hashed version of the password matches the one in the database
         return AuthService.verify_password(password, user.hashed_password)
 
     @staticmethod
     def logout() -> bool:
-        # Just a placeholder since there's no session tracking here
-        return True
+        global logged_in 
+        logged_in = False
+        return True 
+    
+    @staticmethod 
+    def is_loggedin() -> bool:
+        global logged_in
+        if not logged_in:
+            raise HTTPException(status_code=403, detail="You must be logged in to view this page")

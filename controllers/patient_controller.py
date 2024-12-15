@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Form, Request
+from fastapi import APIRouter, Form, Request, Depends
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from services.patient_service import PatientService
+from services.user_service import UserService
 from starlette.responses import HTMLResponse
 from typing import Optional
 
@@ -9,7 +10,7 @@ import logging
 
 logger = logging.getLogger("uvicorn")
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(UserService.is_loggedin)])
 
 # Set up Jinja2 template rendering
 templates = Jinja2Templates(directory="templates")
